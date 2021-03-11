@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Zadatak_02_01.cs" />
+    <Compile Remove="Zadatak_02_02.cs" />
+    <Compile Remove="Zadatak_03_01.cs" />
+    <Compile Remove="Zadatak_03_02.cs" />
+    <Compile Remove="Zadatak_03_03.cs" />
+    <Compile Remove="Zadatak_03_04.cs" />
+    <Compile Remove="Zadatak_03_05.cs" />
+    <Compile Remove="Zadatak_03_06.cs" />
+    <Compile Remove="Zadatak_03_07.cs" />
+    <Compile Remove="Zadatak_03_08.cs" />
+    <Compile Remove="Zadatak_03_09.cs" />
+    <Compile Remove="Zadatak_03_10.cs" />
+    <Compile Remove="Zadatak_03_11.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Zadatak_02_01.cs" />
+    <None Include="Zadatak_02_02.cs" />
+    <None Include="Zadatak_03_01.cs" />
+    <None Include="Zadatak_03_02.cs" />
+    <None Include="Zadatak_03_03.cs" />
+    <None Include="Zadatak_03_04.cs" />
+    <None Include="Zadatak_03_05.cs" />
+    <None Include="Zadatak_03_06.cs" />
+    <None Include="Zadatak_03_07.cs" />
+    <None Include="Zadatak_03_08.cs" />
+    <None Include="Zadatak_03_09.cs" />
+    <None Include="Zadatak_03_10.cs" />
+    <None Include="Zadatak_03_11.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.3.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vjezba.Model\Vjezba.Model.csproj" />
+  </ItemGroup>
+
+</Project>
