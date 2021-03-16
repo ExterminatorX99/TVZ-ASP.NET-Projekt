@@ -47,5 +47,7 @@ namespace Vjezba.Model
 		public int KolikoProfesoraUZvanju(Zvanje zvanje) => Profesori.Count(p => p.Zvanje == zvanje);
 
 		public IEnumerable<Profesor> DohvatiProfesore() => Profesori.OrderBy(profesor => profesor.DatumIzbora);
+
+		public IEnumerable<Profesor> NeaktivniProfesori(int x) => Profesori.Where(p => (p.Zvanje == Zvanje.Predavac || p.Zvanje == Zvanje.VisiPredavac) && p.Predmeti.Count < x);
 	}
 }
