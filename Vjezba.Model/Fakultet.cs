@@ -27,6 +27,7 @@ namespace Vjezba.Model
 		}
 
 		public IEnumerable<Student> DohvatiStudente91() => Studenti.Where(student => student.DatumRodjenja().Year > 1991);
+		public List<Student> DohvatiStudente91List() => Studenti.Where(student => student.DatumRodjenja().Year > 1991).ToList();
 
 		public IEnumerable<Student> DohvatiStudente91NoLinq() {
 			List<Student> s = new List<Student>();
