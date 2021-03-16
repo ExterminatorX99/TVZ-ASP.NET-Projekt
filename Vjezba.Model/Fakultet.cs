@@ -23,6 +23,8 @@ namespace Vjezba.Model
 		public IEnumerable<Student> DohvatiStudente91() => Studenti.Where(student => student.DatumRodjenja().Year > 1991);
 		public List<Student> DohvatiStudente91List() => Studenti.Where(student => student.DatumRodjenja().Year > 1991).ToList();
 
+		public Student NajboljiProsjek(int god) => Studenti.Where(s => s.DatumRodjenja().Year == god).OrderByDescending(s => s.Prosjek).FirstOrDefault();
+
 		public IEnumerable<Student> DohvatiStudente91NoLinq() {
 			var s = new List<Student>();
 			foreach (Student student in Studenti)
