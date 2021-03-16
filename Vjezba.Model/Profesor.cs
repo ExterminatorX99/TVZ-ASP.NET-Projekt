@@ -17,23 +17,13 @@ namespace Vjezba.Model
 		public DateTime DatumIzbora { get; set; }
 
 		public int KolikoDoReizbora() {
-			int doIzbora;
-			switch (Zvanje) {
-				case Zvanje.Asistent:
-					doIzbora = DatumIzbora.Year + 4 - DateTime.Now.Year;
-					break;
-				case Zvanje.Predavac:
-					doIzbora = DatumIzbora.Year + 5 - DateTime.Now.Year;
-					break;
-				case Zvanje.VisiPredavac:
-					doIzbora = DatumIzbora.Year + 5 - DateTime.Now.Year;
-					break;
-				case Zvanje.ProfVisokeSkole:
-					doIzbora = DatumIzbora.Year + 5 - DateTime.Now.Year;
-					break;
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
+			int doIzbora = Zvanje switch {
+				Zvanje.Asistent => DatumIzbora.Year + 4 - DateTime.Now.Year,
+				Zvanje.Predavac => DatumIzbora.Year + 5 - DateTime.Now.Year,
+				Zvanje.VisiPredavac => DatumIzbora.Year + 5 - DateTime.Now.Year,
+				Zvanje.ProfVisokeSkole => DatumIzbora.Year + 5 - DateTime.Now.Year,
+				_ => throw new ArgumentOutOfRangeException()
+			};
 
 			return doIzbora;
 		}
