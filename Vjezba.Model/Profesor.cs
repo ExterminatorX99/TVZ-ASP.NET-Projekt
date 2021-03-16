@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Vjezba.Model
 {
 	public class Profesor : Osoba
 	{
-		public Profesor(string ime, string prezime, string jmbg, string oib, string odjel, Zvanje zvanje, DateTime datumIzbora) : base(ime, prezime, jmbg, oib) {
+		public Profesor(string ime, string prezime, string jmbg, string oib, string odjel, Zvanje zvanje, DateTime datumIzbora, IList<Predmet> predmeti) : base(ime, prezime, jmbg, oib) {
 			Odjel = odjel;
 			Zvanje = zvanje;
 			DatumIzbora = datumIzbora;
+			Predmeti = predmeti;
 		}
 
 		public string Odjel { get; set; }
@@ -15,6 +17,8 @@ namespace Vjezba.Model
 		public Zvanje Zvanje { get; set; }
 
 		public DateTime DatumIzbora { get; set; }
+
+		public IList<Predmet> Predmeti { get; set; }
 
 		public int KolikoDoReizbora() {
 			int doIzbora = Zvanje switch {

@@ -14,26 +14,11 @@ namespace Vjezba.Model
 
 		public IList<Student> Studenti { get; set; }
 
-		public int KolikoProfesora() => Profesori.Count;
-
 		public int KolikoStudenata() => Studenti.Count;
 
 		public Student DohvatiStudenta(string jmbag) => Studenti.SingleOrDefault(s => s.JMBAG == jmbag);
 
 		public IEnumerable<Student> DohvatiStudente91() => Studenti.Where(student => student.DatumRodjenja().Year > 1991);
-		public List<Student> DohvatiStudente91List() => Studenti.Where(student => student.DatumRodjenja().Year > 1991).ToList();
-
-		public Student NajboljiProsjek(int god) => Studenti.Where(s => s.DatumRodjenja().Year == god).OrderByDescending(s => s.Prosjek).FirstOrDefault();
-
-		public IEnumerable<Student> StudentiGodinaOrdered(int god) => Studenti.Where(s => s.DatumRodjenja().Year == god).OrderByDescending(s => s.Prosjek);
-
-		public IEnumerable<Profesor> SviProfesori(bool asc) {
-			if (asc)
-				return Profesori.OrderBy(p => p.Prezime).ThenBy(p => p.Ime);
-			return Profesori.OrderByDescending(p => p.Prezime).ThenByDescending(p => p.Ime);
-		}
-
-		public int KolikoProfesoraUZvanju(Zvanje zvanje) => Profesori.Count(p => p.Zvanje == zvanje);
 
 		public IEnumerable<Student> DohvatiStudente91NoLinq() {
 			var s = new List<Student>();
@@ -43,7 +28,23 @@ namespace Vjezba.Model
 			return s;
 		}
 
+		public List<Student> DohvatiStudente91List() => Studenti.Where(student => student.DatumRodjenja().Year > 1991).ToList();
+
 		public IEnumerable<Student> StudentiNeTvzD() => Studenti.Where(s => s.JMBAG.Substring(0, 4) == "0246" && s.Prezime[0] == 'D');
+
+		public Student NajboljiProsjek(int god) => Studenti.Where(s => s.DatumRodjenja().Year == god).OrderByDescending(s => s.Prosjek).FirstOrDefault();
+
+		public IEnumerable<Student> StudentiGodinaOrdered(int god) => Studenti.Where(s => s.DatumRodjenja().Year == god).OrderByDescending(s => s.Prosjek);
+
+		public int KolikoProfesora() => Profesori.Count;
+
+		public IEnumerable<Profesor> SviProfesori(bool asc) {
+			if (asc)
+				return Profesori.OrderBy(p => p.Prezime).ThenBy(p => p.Ime);
+			return Profesori.OrderByDescending(p => p.Prezime).ThenByDescending(p => p.Ime);
+		}
+
+		public int KolikoProfesoraUZvanju(Zvanje zvanje) => Profesori.Count(p => p.Zvanje == zvanje);
 
 		public IEnumerable<Profesor> DohvatiProfesore() => Profesori.OrderBy(profesor => profesor.DatumIzbora);
 	}
