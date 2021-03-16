@@ -26,6 +26,18 @@ namespace Vjezba.Model
 			return Studenti.SingleOrDefault(s => s.JMBAG == jmbag);
 		}
 
+		public IEnumerable<Student> DohvatiStudente91() => Studenti.Where(student => student.DatumRodjenja().Year > 1991);
+
+		public IEnumerable<Student> DohvatiStudente91NoLinq() {
+			IList<Student> s = new List<Student>();
+			foreach (Student student in Studenti) {
+				if (student.DatumRodjenja().Year > 1991)
+					s.Add(student);
+			}
+			return s;
+		}
+		
+
 		public IEnumerable<Profesor> DohvatiProfesore() {
 			return Profesori.OrderBy(profesor => profesor.DatumIzbora);
 		}
