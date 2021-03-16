@@ -33,6 +33,8 @@ namespace Vjezba.Model
 			return Profesori.OrderByDescending(p => p.Prezime).ThenByDescending(p => p.Ime);
 		}
 
+		public int KolikoProfesoraUZvanju(Zvanje zvanje) => Profesori.Count(p => p.Zvanje == zvanje);
+
 		public IEnumerable<Student> DohvatiStudente91NoLinq() {
 			var s = new List<Student>();
 			foreach (Student student in Studenti)
