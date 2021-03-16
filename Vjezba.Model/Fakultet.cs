@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Vjezba.Model
@@ -51,5 +52,11 @@ namespace Vjezba.Model
 		public IEnumerable<Profesor> NeaktivniProfesori(int x) => Profesori.Where(p => (p.Zvanje == Zvanje.Predavac || p.Zvanje == Zvanje.VisiPredavac) && p.Predmeti.Count < x);
 
 		public IEnumerable<Profesor> AktivniAsistenti(int x, int minEcts) => Profesori.Where(p => p.Zvanje == Zvanje.Asistent && p.Predmeti.Count(p => p.ECTS >= minEcts) > x);
+
+		public void IzmjeniProfesore(Action<Profesor> action) {
+			foreach (Profesor profesor in Profesori) {
+				action(profesor);
+			}
+		}
 	}
 }
