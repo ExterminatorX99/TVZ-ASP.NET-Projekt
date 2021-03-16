@@ -27,6 +27,12 @@ namespace Vjezba.Model
 
 		public IEnumerable<Student> StudentiGodinaOrdered(int god) => Studenti.Where(s => s.DatumRodjenja().Year == god).OrderByDescending(s => s.Prosjek);
 
+		public IEnumerable<Profesor> SviProfesori(bool asc) {
+			if (asc)
+				return Profesori.OrderBy(p => p.Prezime).ThenBy(p => p.Ime);
+			return Profesori.OrderByDescending(p => p.Prezime).ThenByDescending(p => p.Ime);
+		}
+
 		public IEnumerable<Student> DohvatiStudente91NoLinq() {
 			var s = new List<Student>();
 			foreach (Student student in Studenti)
