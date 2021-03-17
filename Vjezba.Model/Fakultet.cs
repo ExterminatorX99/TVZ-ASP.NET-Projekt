@@ -54,9 +54,8 @@ namespace Vjezba.Model
 		public IEnumerable<Profesor> AktivniAsistenti(int x, int minEcts) => Profesori.Where(p => p.Zvanje == Zvanje.Asistent && p.Predmeti.Count(p => p.ECTS >= minEcts) > x);
 
 		public void IzmjeniProfesore(Action<Profesor> action) {
-			foreach (Profesor profesor in Profesori) {
+			foreach (Profesor profesor in Profesori)
 				action(profesor);
-			}
 		}
 	}
 }
