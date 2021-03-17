@@ -8,6 +8,8 @@
 			Naziv = naziv;
 		}
 
+		public Predmet() { }
+
 		public int Sifra { get; set; }
 
 		public int ECTS { get; set; }

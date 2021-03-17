@@ -12,6 +12,10 @@ namespace Vjezba.Model
 			Predmeti = predmeti;
 		}
 
+		public Profesor() {
+			Predmeti = new List<Predmet>();
+		}
+
 		public string Odjel { get; set; }
 
 		public Zvanje Zvanje { get; set; }

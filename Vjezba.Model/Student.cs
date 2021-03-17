@@ -14,6 +14,9 @@ namespace Vjezba.Model
 			ECTS = ects;
 		}
 
+		public Student() {
+		}
+
 		public string JMBAG {
 			get => jmbag;
 			set {
