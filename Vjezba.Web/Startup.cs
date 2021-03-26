@@ -6,8 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Vjezba.Web.Mock;
 
 namespace Vjezba.Web
 {
@@ -23,7 +25,8 @@ namespace Vjezba.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +55,9 @@ namespace Vjezba.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            MockClientRepository.Instance.Initialize(Path.Combine(env.WebRootPath, "data"));
+            MockCityRepository.Instance.Initialize(Path.Combine(env.WebRootPath, "data"));
         }
     }
 }
