@@ -6,13 +6,13 @@ namespace Vjezba.Model
 	public class Osoba
 	{
 		private string jmbg;
-		private string oib;
+		private string _OIB;
 
-		public Osoba(string ime, string prezime, string jmbg, string oib) {
+		public Osoba(string ime, string prezime, string jmbg, string _OIB) {
 			Ime = ime;
 			Prezime = prezime;
 			JMBG = jmbg;
-			OIB = oib;
+			OIB = _OIB;
 		}
 
 		public Osoba() { }
@@ -22,11 +22,11 @@ namespace Vjezba.Model
 		public string Prezime { get; set; }
 
 		public string OIB {
-			get => oib;
+			get => _OIB;
 			set {
 				if (value.Length != 11 || !value.All(char.IsDigit))
 					throw new InvalidOperationException();
-				oib = value;
+				_OIB = value;
 			}
 		}
 

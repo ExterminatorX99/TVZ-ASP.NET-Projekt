@@ -55,9 +55,9 @@ namespace Vjezba.Model
 		public IEnumerable<Profesor> AktivniAsistenti(int x, int minEcts) => Osobe.OfType<Profesor>().Where(p => p.Zvanje == Zvanje.Asistent && p.Predmeti.Count(p => p.ECTS >= minEcts) > x);
 
 		public void IzmjeniProfesore(Action<Profesor> action) {
-			foreach (Osoba osoba in Osobe)
-				if (osoba is Profesor profesor)
-					action(profesor);
+			foreach (Profesor p in Osobe.OfType<Profesor>()) {
+				action(p);
+			}
 		}
 	}
 }

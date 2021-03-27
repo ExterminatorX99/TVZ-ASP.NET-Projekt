@@ -5,10 +5,10 @@ namespace Vjezba.Model
 {
 	public class Student : Osoba
 	{
-		private string jmbag;
+		private string _JMBAG;
 
-		public Student(string ime, string prezime, string jmbg, string oib, string jmbag, decimal prosjek, int brPolozeno, int ects) : base(ime, prezime, jmbg, oib) {
-			JMBAG = jmbag;
+		public Student(string ime, string prezime, string jmbg, string oib, string _JMBAG, decimal prosjek, int brPolozeno, int ects) : base(ime, prezime, jmbg, oib) {
+			JMBAG = _JMBAG;
 			Prosjek = prosjek;
 			BrPolozeno = brPolozeno;
 			ECTS = ects;
@@ -18,11 +18,11 @@ namespace Vjezba.Model
 		}
 
 		public string JMBAG {
-			get => jmbag;
+			get => _JMBAG;
 			set {
 				if (value.Length != 10 || !value.All(char.IsDigit))
 					throw new InvalidOperationException();
-				jmbag = value;
+				_JMBAG = value;
 			}
 		}
 
