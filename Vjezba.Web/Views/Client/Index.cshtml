@@ -5,23 +5,30 @@
 	ViewData["Title"] = "Client Page";
 }
 
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item active" aria-current="page">Popis klijenata</li>
+	</ol>
+</nav>
+
 <div class="alert alert-primary" role="alert">
 	U sustavu postoji @Model.Count klijenata.
 </div>
 
 <table class="table">
 	<thead>
-	<tr>
-		<th scope="col">Client</th>
-		<th scope="col">Address</th>
-		<th scope="col">Email</th>
-		<th scope="col">City</th>
-	</tr>
+		<tr>
+			<th scope="col">Client</th>
+			<th scope="col">Address</th>
+			<th scope="col">Email</th>
+			<th scope="col">City</th>
+		</tr>
 	</thead>
 	<tbody>
-		@foreach (Client client in Model) {
+		@foreach (Client client in Model)
+		{
 			<tr>
-				<td>@client.FullName</td>
+				<td><a asp-controller="Client" asp-action="Details" asp-route-id="@client.ID">@client.FullName</a></td>
 				<td>@client.Address</td>
 				<td>@client.Email</td>
 				<td>@client.City?.Name</td>

@@ -2,13 +2,22 @@
 
 @{
 	ViewData["Title"] = "Client Details";
+	string fullName = Model != null ? Model.FullName : "Ne postoji";
 }
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a asp-controller="Client" asp-action="Index">Popis klijenata</a></li>
+		<li class="breadcrumb-item active" aria-current="page">@fullName</li>
+	</ol>
+</nav>
 
 <div>
 	<h1>Details</h1>
-	@if (Model != null) {
+	@if (Model != null)
+	{
 		<h4>Client</h4>
-		<hr/>
+		<hr />
 		<dl class="row">
 			<dt class="col-sm-2 text-sm-right">
 				@Html.DisplayNameFor(model => model.ID)
@@ -54,7 +63,8 @@
 			</dd>
 		</dl>
 	}
-	else {
+	else
+	{
 		<div class="alert alert-danger" role="alert">
 			Klijent ne postoji!
 		</div>
