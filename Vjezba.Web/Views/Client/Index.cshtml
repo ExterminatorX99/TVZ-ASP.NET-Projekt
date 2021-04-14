@@ -11,12 +11,37 @@
 	</ol>
 </nav>
 
-<form class="form-inline">
-	<div class="form-group">
-		<input class="form-control mb-2 mr-sm-2" type="text" name="query" placeholder="Client name"/>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+	<li class="nav-item" role="presentation">
+		<a class="nav-link active" id="zad5-5-tab" data-toggle="tab" href="#zad5-5" role="tab" aria-controls="zad5-5" aria-selected="true">Zadatak 5.5</a>
+	</li>
+	<li class="nav-item" role="presentation">
+		<a class="nav-link" id="zad5-6-tab" data-toggle="tab" href="#zad5-6" role="tab" aria-controls="zad5-6" aria-selected="false">Zadatak 5.6</a>
+	</li>
+</ul>
+<div class="tab-content" id="myTabContent">
+	<div class="tab-pane fade show active" id="zad5-5" role="tabpanel" aria-labelledby="zad5-5-tab">
+		<h3>Zadatak 5.5 - GET forma s jednim parametrom</h3>
+		<form class="form-inline">
+			<div class="form-group">
+				<input class="form-control mb-2 mr-sm-2" type="text" name="query" placeholder="Pretraga po imenu"/>
+			</div>
+			<button type="submit" class="btn btn-primary mb-2">Submit</button>
+		</form>
 	</div>
-	<button type="submit" class="btn btn-primary mb-2">Submit</button>
-</form>
+	<div class="tab-pane fade" id="zad5-6" role="tabpanel" aria-labelledby="zad5-6-tab">
+		<h3>Zadatak 5.6 - POST forma s dva parametrom</h3>
+		<form class="form-inline" method="post">
+			<div class="form-group">
+				<input class="form-control mb-2 mr-sm-2" type="text" name="queryName" placeholder="Pretraga po imenu" />
+			</div>
+			<div class="form-group">
+				<input class="form-control mb-2 mr-sm-2" type="text" name="queryAddress" placeholder="Pretraga po adresi" />
+			</div>
+			<button type="submit" class="btn btn-primary mb-2">Submit</button>
+		</form>
+	</div>
+</div>
 
 <table class="table">
 	<thead>

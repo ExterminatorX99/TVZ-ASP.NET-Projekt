@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Vjezba.Web.Mock;
-using Vjezba.Web.Models;
 
 namespace Vjezba.Web.Controllers
 {
@@ -20,9 +16,21 @@ namespace Vjezba.Web.Controllers
 			return View(clients);
 		}
 
+		[HttpPost]
+		public IActionResult Index(string queryName, string queryAddress) {
+			List<Client> clients = MockClientRepository.Instance.All().ToList();
+
+			if (!string.IsNullOrWhiteSpace(queryName))
+				clients = clients.Where(c => c.FullName.ToLower().Contains(queryName.ToLower())).ToList();
+			if (!string.IsNullOrWhiteSpace(queryAddress))
+				clients = clients.Where(c => c.Address.ToLower().Contains(queryAddress.ToLower())).ToList();
+
+			return View(clients);
+		}
+
 		public IActionResult Details(int? id = null) {
 			Client client = default;
-			if(id != null)
+			if (id != null)
 				client = MockClientRepository.Instance.FindByID((int)id);
 
 			return View(client);
