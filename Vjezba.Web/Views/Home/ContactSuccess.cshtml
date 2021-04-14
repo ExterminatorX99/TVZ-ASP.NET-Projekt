@@ -3,6 +3,8 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-@{
-	<p>@Html.Raw(ViewBag.Message)</p>
-}
+<div class="alert alert-success" role="alert">
+	@{
+		<p>@Html.Raw(ViewBag.Message)</p>
+	}
+</div>
