@@ -67,11 +67,23 @@ namespace Vjezba.Web.Controllers
 		/// <param name="formData"></param>
 		/// <returns></returns>
 		[HttpPost]
-		public IActionResult SubmitQuery(IFormCollection formData)
-		{
+		public IActionResult SubmitQuery(IFormCollection formData) {
+			string ime = formData["ime"];
+			string prezime = formData["prezime"];
+			string email = formData["email"]; ;
+			string poruka = formData["poruka"]; ;
+			string tip = formData["tip"]; ;
+			string toggle = formData["newsletter"];
+			string newsletter = toggle == "on" ? "obavijestit ćemo vas" : "nećemo vas obavijestiti";
+
+
 			//Ovdje je potrebno obraditi podatke i pospremiti finalni string u ViewBag
+			string message = $"Poštovani {ime} {prezime} ({email}) zaprimili smo vašu poruku te će vam se netko ubrzo javiti.<br>";
+			message += $"Sadržaj vaše poruke je: [{tip}]<br>{poruka}.<br>";
+			message += $"Također, {newsletter} o daljnjim promjenama preko newslettera.<br>";
 
 
+			ViewBag.Message = message;
 			//Kao rezultat se pogled /Views/Home/ContactSuccess.cshtml renderira u "pravi" HTML
 			//Kao parametar se predaje naziv cshtml datoteke koju treba obraditi (ne koristi se default vrijednost)
 			//Trazenu cshtml datoteku je potrebno samostalno dodati u projekt
