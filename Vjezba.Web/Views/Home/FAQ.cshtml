@@ -1,14 +1,25 @@
 ﻿@{
 	ViewData["Title"] = "FAQ";
 }
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+		<li class="breadcrumb-item active" aria-current="page">FAQ</li>
+	</ol>
+</nav>
+
+
 <h1>@ViewData["Title"]</h1>
 
 <p>Frequently asked questions</p>
 
 <ul class="navbar-nav flex-grow-1">
-	@for (int i = 0; i < ViewBag.Questions.Count; i++) {
+	@for (int i = 0; i < ViewBag.Questions.Count; i++)
+	{
 		(string q, string a, bool bold) qa = ViewBag.Questions[i];
-		if (qa.bold) {
+		if (qa.bold)
+		{
 			<li>
 				<h5>
 					<strong>Q@(i + 1). @qa.q</strong>
@@ -16,7 +27,8 @@
 				<p>@qa.a</p>
 			</li>
 		}
-		else {
+		else
+		{
 			<li>
 				<h5>Q@(i + 1). @qa.q</h5>
 				<p>@qa.a</p>
