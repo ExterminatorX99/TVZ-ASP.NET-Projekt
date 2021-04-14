@@ -1,9 +1,31 @@
-﻿@model List<Vjezba.Web.Mock.Client>
+﻿@using Vjezba.Web.Mock
+@model List<Vjezba.Web.Mock.Client>
 
 @{
-	ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Client Page";
 }
 
 <div class="alert alert-primary" role="alert">
 	U sustavu postoji @Model.Count klijenata.
 </div>
+
+<table class="table">
+	<thead>
+	<tr>
+		<th scope="col">Client</th>
+		<th scope="col">Address</th>
+		<th scope="col">Email</th>
+		<th scope="col">City</th>
+	</tr>
+	</thead>
+	<tbody>
+		@foreach (Client client in Model) {
+			<tr>
+				<td>@client.FullName</td>
+				<td>@client.Address</td>
+				<td>@client.Email</td>
+				<td>@client.City?.Name</td>
+			</tr>
+		}
+	</tbody>
+</table>
