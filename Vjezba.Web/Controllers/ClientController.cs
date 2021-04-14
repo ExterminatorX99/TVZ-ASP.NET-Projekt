@@ -16,5 +16,13 @@ namespace Vjezba.Web.Controllers
 
 			return View(clients);
 		}
+
+		public IActionResult Details(int? id = null) {
+			Client client = default;
+			if(id != null)
+				client = MockClientRepository.Instance.FindByID((int)id);
+
+			return View(client);
+		}
 	}
 }
