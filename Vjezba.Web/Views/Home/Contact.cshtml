@@ -5,58 +5,79 @@
 
 <p>Podaci proslijeđeni iz controller-a: @ViewData["Message"]</p>
 
-<form action="/Home/SubmitQuery" method="post">
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<label for="ime">
-				<strong>Ime</strong>
-			</label>
-			<input type="text" class="form-control" name="ime" id="ime" placeholder="Unesite ime" />
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	Kontaktirajte nas!
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form action="/Home/SubmitQuery" method="post">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Kontakt forma</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="ime">
+								<strong>Ime</strong>
+							</label>
+							<input type="text" class="form-control" name="ime" id="ime" placeholder="Unesite ime"/>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="prezime">
+								<strong>Prezime</strong>
+							</label>
+							<input type="text" class="form-control" name="prezime" id="prezime" placeholder="Unesite prezime"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email">
+							<strong>E-mail</strong>
+						</label>
+						<input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Unesite email"/>
+					</div>
+					<div class="form-group">
+						<label for="poruka">
+							<strong>Poruka</strong>
+						</label>
+						<textarea class="form-control" name="poruka" id="poruka"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="tip">
+							<strong>Tip poruke</strong>
+						</label>
+						<select class="form-control" name="tip" id="tip">
+							<option value="Pohvala">Pohvala</option>
+							<option value="Upit">Upit</option>
+							<option value="Prijedlog">Poslovni Prijedlog</option>
+							<option value="Žalba">Žalba</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" name="newsletter" id="newsletter"/>
+							<label class="form-check-label" for="newsletter">Želite li primati naš newsletter?</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Pošalji</button>
+				</div>
+			</form>
 		</div>
-		<div class="form-group col-md-6">
-			<label for="prezime">
-				<strong>Prezime</strong>
-			</label>
-			<input type="text" class="form-control" name="prezime" id="prezime" placeholder="Unesite prezime" />
-		</div>
 	</div>
-	<div class="form-group">
-		<label for="email">
-			<strong>E-mail</strong>
-		</label>
-		<input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Unesite email" />
-	</div>
-	<div class="form-group">
-		<label for="poruka">
-			<strong>Poruka</strong>
-		</label>
-		<textarea class="form-control" name="poruka" id="poruka" placeholder="Unesite poruku"></textarea>
-	</div>
-	<div class="form-group">
-		<label for="tip">
-			<strong>Tip poruke</strong>
-		</label>
-		<select class="form-control" name="tip" id="tip">
-			<option value="Pohvala">Pohvala</option>
-			<option value="Upit">Upit</option>
-			<option value="Prijedlog">Poslovni Prijedlog</option>
-			<option value="Žalba">Žalba</option>
-		</select>
-	</div>
-	<div class="form-row">
-		<div class="form-check col-md-6">
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" name="newsletter" id="newsletter" />
-				<label class="form-check-label" for="newsletter">Želite li primati naš newsletter?</label>
-			</div>
-		</div>
-		
-		<div class="col-md-6 text-right">
-			<button type="submit" class="btn btn-primary">Pošalji</button>
-		</div>
-	</div>
-</form>
-<br/>
+</div>
+
+<br>
+<br>
+
 <div class="row">
 	<div class="col-md-6">
 		<div class="card">
