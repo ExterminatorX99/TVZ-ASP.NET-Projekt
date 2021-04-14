@@ -29,6 +29,29 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
+        public IActionResult FAQ(int? selected = null)
+        {
+            var questions = new List<(string q, string a, bool bold)>
+            {
+                ("What is 2+2?", "4", false),
+                ("What is the answer to life?", "42", false),
+                ("Why didn’t the Eagles fly the Ring to Mount Doom?", "Shut up", false),
+                ("Why?", "Because", false),
+                ("Who?", "Kristijan Kos", false)
+            };
+
+            if (selected != null) {
+                int s = (int)selected;
+                (string q, string a, bool bold) q = questions[s - 1];
+                q.bold = true;
+                questions[s - 1] = q;
+            }
+
+            ViewBag.Questions = questions;
+
+            return View();
+        }
+
         public IActionResult Contact()
         {
             ViewBag.Message = "Jednostavan način proslijeđivanja poruke iz Controller -> View.";

@@ -1,0 +1,26 @@
+﻿@{
+	ViewData["Title"] = "FAQ";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Frequently asked questions</p>
+
+<ul class="navbar-nav flex-grow-1">
+	@for (int i = 0; i < ViewBag.Questions.Count; i++) {
+		(string q, string a, bool bold) qa = ViewBag.Questions[i];
+		if (qa.bold)
+		{
+			<li>
+				<h5><strong>Q@(i+1). @qa.q</strong></h5>
+				<p>@qa.a</p>
+			</li>
+		}
+		else
+		{
+			<li>
+				<h5>Q@(i+1). @qa.q</h5>
+				<p>@qa.a</p>
+			</li>
+		}
+	}
+</ul>
