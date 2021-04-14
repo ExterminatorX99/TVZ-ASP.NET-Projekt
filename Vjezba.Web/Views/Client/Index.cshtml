@@ -11,9 +11,12 @@
 	</ol>
 </nav>
 
-<div class="alert alert-primary" role="alert">
-	U sustavu postoji @Model.Count klijenata.
-</div>
+<form class="form-inline">
+	<div class="form-group">
+		<input class="form-control mb-2 mr-sm-2" type="text" name="query" placeholder="Client name"/>
+	</div>
+	<button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
 
 <table class="table">
 	<thead>

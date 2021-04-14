@@ -11,8 +11,11 @@ namespace Vjezba.Web.Controllers
 {
 	public class ClientController : Controller
 	{
-		public IActionResult Index() {
+		public IActionResult Index(string query) {
 			List<Client> clients = MockClientRepository.Instance.All().ToList();
+
+			if (!string.IsNullOrWhiteSpace(query))
+				clients = clients.Where(c => c.FullName.ToLower().Contains(query.ToLower())).ToList();
 
 			return View(clients);
 		}
