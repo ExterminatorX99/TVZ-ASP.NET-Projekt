@@ -6,57 +6,79 @@
 <p>Podaci proslijeđeni iz controller-a: @ViewData["Message"]</p>
 
 <form action="/Home/SubmitQuery" method="post">
-	<table>
-		<tr>
-			<td>
-				<label for="imePrezime">Ime i Prezime</label>
-			</td>
-			<td>
-				<input type="text" name="imePrezime" id="imePrezime" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label for="email">E-mail</label>
-			</td>
-			<td>
-				<input type="text" name="email" id="email" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label for="poruka">Poruka</label>
-			</td>
-			<td>
-				<textarea name="poruka" id="poruka"></textarea>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label for="tip">Tip poruke</label>
-			</td>
-			<td>
-				<select name="tip" id="tip">
-					<option value="Pohvala">Pohvala</option>
-					<option value="Upit">Upit</option>
-					<option value="Prijedlog">Poslovni Prijedlog</option>
-					<option value="Žalba">Žalba</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label for="newsletter">Želite li primati naš newsletter?</label>
-			</td>
-			<td>
-				<input type="checkbox" name="newsletter" id="newsletter" />
-			</td>
-		</tr>
-
-		<tr>
-			<td colspan="2">
-				<input type="submit" value="Pošalji"/>
-			</td>
-		</tr>
-	</table>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label for="ime">
+				<strong>Ime</strong>
+			</label>
+			<input type="text" class="form-control" name="ime" id="ime" placeholder="Unesite ime" />
+		</div>
+		<div class="form-group col-md-6">
+			<label for="prezime">
+				<strong>Prezime</strong>
+			</label>
+			<input type="text" class="form-control" name="prezime" id="prezime" placeholder="Unesite prezime" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="email">
+			<strong>E-mail</strong>
+		</label>
+		<input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Unesite email" />
+	</div>
+	<div class="form-group">
+		<label for="poruka">
+			<strong>Poruka</strong>
+		</label>
+		<textarea class="form-control" name="poruka" id="poruka" placeholder="Unesite poruku"></textarea>
+	</div>
+	<div class="form-group">
+		<label for="tip">
+			<strong>Tip poruke</strong>
+		</label>
+		<select class="form-control" name="tip" id="tip">
+			<option value="Pohvala">Pohvala</option>
+			<option value="Upit">Upit</option>
+			<option value="Prijedlog">Poslovni Prijedlog</option>
+			<option value="Žalba">Žalba</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<div class="form-check col-md-6">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" name="newsletter" id="newsletter" />
+				<label class="form-check-label" for="newsletter">Želite li primati naš newsletter?</label>
+			</div>
+		</div>
+		
+		<div class="col-md-6 text-right">
+			<button type="submit" class="btn btn-primary">Pošalji</button>
+		</div>
+	</div>
 </form>
+<br/>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card">
+			<div class="card-header">
+				Adresa sjedišta
+			</div>
+			<div class="card-body">
+				<p>One Microsoft Way</p>
+				<p>Redmond, WA 98052-6399</p>
+				<p>P: 425.555.0100</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card">
+			<p class="card-header">
+				Javite nam se
+			</p>
+			<div class="card-body">
+				<p>Support: <a href="mailto: Support@example.com">Support@example.com</a></p>
+				<p>Marketing: <a href="mailto: Marketing@example.com">Marketing@example.com</a></p>
+			</div>
+		</div>
+	</div>
+</div>
