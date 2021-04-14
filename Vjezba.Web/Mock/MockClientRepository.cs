@@ -39,7 +39,7 @@ namespace Vjezba.Web.Mock
 
             var xDoc = XDocument.Load(this._xmlPath);
 
-            var allNodes = xDoc.Root.Descendants("client")
+            var allNodes = xDoc.Root!.Descendants("client")
                 .Select(p => new Client()
                 {
                     ID = int.Parse(p.Descendants("id").First().Value),
