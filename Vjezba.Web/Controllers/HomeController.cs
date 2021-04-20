@@ -36,6 +36,7 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
+        [Route("cesto-postavljana-pitanja/{selected:minlength(1):maxlength(2):int?}")]
         public IActionResult FAQ(int? selected = null)
         {
             ViewData["selected"] = selected;
