@@ -24,8 +24,15 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
+        public IActionResult Privacy(string lang) {
+            string message = lang switch {
+                "hr" => "Cijenimo vašu privatnost",
+                "de" => "Wir schätzen Ihre Privatsphäre",
+                "zh" => "我们重视您的隐私",
+                _    => "We value your privacy"
+            };
+            ViewBag.Message = message;
+
             return View();
         }
 
