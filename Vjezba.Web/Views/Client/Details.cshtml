@@ -6,16 +6,19 @@
 
 <h2>Details</h2>
 
-@if (Model != null)
-{
-	<ol class="breadcrumb">
-		<li><a asp-action="Index">Popis klijenata</a></li>
-		<li class="active">@Model.FullName</li>
-	</ol>
+@if (Model != null) {
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a asp-action="Index">Popis klijenata</a>
+			</li>
+			<li class="breadcrumb-item active">@Model.FullName</li>
+		</ol>
+	</nav>
 
 	<div>
 		<h4>Client</h4>
-		<hr />
+		<hr/>
 		<dl class="dl-horizontal">
 			<dt>
 				ID
@@ -61,13 +64,9 @@
 			</dd>
 		</dl>
 	</div>
-
 }
-else
-{
+else {
 	<div class="alert alert-danger">
 		Nije odabran ispravni ID klijenta.
 	</div>
-
 }
-
