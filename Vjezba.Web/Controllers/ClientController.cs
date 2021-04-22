@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Vjezba.DAL;
 using Vjezba.Model;
 using Vjezba.Web.Models;
@@ -16,7 +17,7 @@ namespace Vjezba.Web.Controllers
 		}
 
 		public IActionResult Index(string query = null) {
-			IQueryable<Client> clientQuery = _dbContext.Clients;
+			IQueryable<Client> clientQuery = _dbContext.Clients.Include(c => c.City);
 
 			if (!string.IsNullOrWhiteSpace(query))
 				clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(query));
@@ -28,7 +29,7 @@ namespace Vjezba.Web.Controllers
 
 		[HttpPost]
 		public ActionResult Index(string queryName, string queryAddress) {
-			IQueryable<Client> clientQuery = _dbContext.Clients;
+			IQueryable<Client> clientQuery = _dbContext.Clients.Include(c => c.City);
 
 			//Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
 			//To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
@@ -46,7 +47,7 @@ namespace Vjezba.Web.Controllers
 
 		[HttpPost]
 		public ActionResult AdvancedSearch(ClientFilterModel filter) {
-			IQueryable<Client> clientQuery = _dbContext.Clients;
+			IQueryable<Client> clientQuery = _dbContext.Clients.Include(c => c.City);
 
 			//Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
 			//To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
@@ -69,7 +70,7 @@ namespace Vjezba.Web.Controllers
 		}
 
 		public IActionResult Details(int? id = null) {
-			Client model = id != null ? _dbContext.Clients.Find(id) : null;
+			Client model = id != null ? _dbContext.Clients.Include(c => c.City).FirstOrDefault(c => c.ID == id) : null;
 			return View(model);
 		}
 
