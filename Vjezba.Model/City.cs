@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Vjezba.Web.Mock
+namespace Vjezba.Model
 {
 	public class City
 	{

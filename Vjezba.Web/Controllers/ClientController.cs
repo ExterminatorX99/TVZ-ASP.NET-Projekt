@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Vjezba.Web.Mock;
 using Vjezba.Web.Models;
 
 namespace Vjezba.Web.Controllers

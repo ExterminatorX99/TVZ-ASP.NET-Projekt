@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vjezba.Web.Mock
+namespace Vjezba.Model
 {
 	public class Client
 	{
@@ -24,6 +26,8 @@ namespace Vjezba.Web.Mock
 		public int? CityID { get; set; }
 
 		public virtual City City { get; set; }
+
+		public virtual ICollection<Meeting> Meetings { get; set; }
 
 		public string FullName => $"{FirstName} {LastName}";
 	}

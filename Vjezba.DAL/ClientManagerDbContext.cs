@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Vjezba.Web.Mock;
+using Vjezba.Model;
 
 namespace Vjezba.DAL
 {
@@ -9,6 +9,8 @@ namespace Vjezba.DAL
 		public DbSet<Client> Clients { get; set; }
 
 		public DbSet<City> Cities { get; set; }
+
+		public DbSet<Meeting> Meetings { get; set; }
 
 		protected ClientManagerDbContext() { }
 		public ClientManagerDbContext(DbContextOptions<ClientManagerDbContext> options) : base(options) { }
