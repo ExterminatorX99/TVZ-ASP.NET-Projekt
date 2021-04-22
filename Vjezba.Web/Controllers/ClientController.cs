@@ -17,7 +17,7 @@ namespace Vjezba.Web.Controllers
             if (!string.IsNullOrWhiteSpace(query))
                 clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(query));
 
-            ViewBag.ActiveTab = 1;
+            ViewBag.ActiveTab = 4;
 
             return View(clientQuery.ToList());
         }
