@@ -44,8 +44,8 @@ namespace Vjezba.Web
                 endpoints.MapControllerRoute("o-aplikaciji", "o-aplikaciji/{LANG}", new {controller = "Home", action = "Privacy"}, new {LANG= @"[a-zA-z]{2}" });
             });
 
-            MockClientRepository.Instance.Initialize(xmlFolderPath: Path.Combine(env.WebRootPath, "data"));
-            MockCityRepository.Instance.Initialize(xmlFolderPath: Path.Combine(env.WebRootPath, "data"));
+            //MockClientRepository.Instance.Initialize(xmlFolderPath: Path.Combine(env.WebRootPath, "data"));
+            //MockCityRepository.Instance.Initialize(xmlFolderPath: Path.Combine(env.WebRootPath, "data"));
         }
     }
 }
