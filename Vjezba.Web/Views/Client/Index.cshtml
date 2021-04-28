@@ -11,77 +11,9 @@
 	}
 </style>
 
-<div style="margin-top: 20px;">
-	<!-- Nav tabs -->
-
-	<ul class="nav nav-tabs">
-		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 1 ? "active" : "")" href="#z-5-5" aria-controls="z-5-5" role="tab" data-toggle="tab">Zadatak 5.5</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 2 ? "active" : "")" href="#z-5-6" aria-controls="z-5-6" role="tab" data-toggle="tab">Zadatak 5.6</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 3 ? "active" : "")" href="#z-5-7" aria-controls="z-5-7" role="tab" data-toggle="tab">Zadatak 5.7</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 4 ? "active" : "")" href="#z-6-3" aria-controls="z-6-3" role="tab" data-toggle="tab">Zadatak 6.3</a>
-		</li>
-	</ul>
-
-	<!-- Tab panes -->
-	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 1 ? "show active" : "")" id="z-5-5">
-			<h4>Zadatak 5.5 - GET forma s jednim parametrom</h4>
-			<form action="@Url.Action("Index")" method="get" class="form-inline">
-				<div class="form-group">
-					<input type="text" class="form-control" name="query" placeholder="Upišite željeni pojam">
-				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-		</div>
-		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 2 ? "show active" : "")" id="z-5-6">
-			<h4>Zadatak 5.6 - POST forma s dva parametra</h4>
-			<form action="@Url.Action("Index")" method="post" class="form-inline">
-				<div class="form-group">
-					<input type="text" class="form-control" name="queryName" placeholder="Pretraga po imenu">
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" name="queryAddress" placeholder="Pretraga po adresi">
-				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-		</div>
-		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 3 ? "show active" : "")" id="z-5-7">
-			<h4>Zadatak 5.7 - POST forma, binding na model</h4>
-			<form action="@Url.Action("AdvancedSearch")" method="post" class="form-inline">
-				<div class="form-group">
-					<input type="text" class="form-control" name="FullName" placeholder="Pretraga po imenu">
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" name="Address" placeholder="Pretraga po adresi">
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" name="Email" placeholder="Pretraga po e-mailu">
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" name="City" placeholder="Pretraga po gradu">
-				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-		</div>
-		<div role="tabpanel" class="tab-pane  @(ViewBag.ActiveTab == 4 ? "show active" : "")" id="z-6-3">
-			<h4>Zadatak 6.3 - Partial</h4>
-			@*@await Html.PartialAsync("_ClientFilter", new ClientFilterModel())*@
-			<partial name="_ClientFilter" model="new ClientFilterModel()" />
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<a asp-action="Create" class="btn btn-success float-right">Dodaj novog</a>
-	</div>
+<h1>Popis klijenata</h1>
+<div style="margin-top: 20px; margin-bottom: 10px;">
+	<partial name="_ClientFilter" model="new ClientFilterModel()" />
 </div>
 
 <table style="margin-top: 20px;" class="table table-condensed">
