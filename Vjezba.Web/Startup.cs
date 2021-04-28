@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,7 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Vjezba.Web.Mock;
+using Vjezba.DAL;
 
 namespace Vjezba.Web
 {
@@ -27,6 +28,12 @@ namespace Vjezba.Web
         {
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
+
+            services.AddDbContext<ClientManagerDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ClientManagerDbContext"),
+                    opt => opt.MigrationsAssembly("Vjezba.DAL")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,12 +59,19 @@ namespace Vjezba.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "kontakt-forma",
+                    pattern: "kontakt-forma",
+                    defaults: new { controller = "Home", action = "Contact" });
+
+                endpoints.MapControllerRoute(
+                    name: "o-aplikaciji",
+                    pattern: "o-aplikaciji/{lang:alpha:length(2)}",
+                    defaults: new { controller = "Home", action = "Privacy" });
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            MockClientRepository.Instance.Initialize(Path.Combine(env.WebRootPath, "data"));
-            MockCityRepository.Instance.Initialize(Path.Combine(env.WebRootPath, "data"));
         }
     }
 }

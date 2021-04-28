@@ -1,21 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Vjezba.Web.Mock;
+using Vjezba.DAL;
+using Vjezba.Model;
 using Vjezba.Web.Models;
 
 namespace Vjezba.Web.Controllers
 {
     public class ClientController : Controller
     {
+        private ClientManagerDbContext _dbContext;
+
+        public ClientController(ClientManagerDbContext dbContext)
+        {
+            this._dbContext = dbContext;
+        }
+
         public IActionResult Index(string query = null)
         {
-            var clientQuery = MockClientRepository.Instance.All();
+            var clientQuery = this._dbContext.Clients.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query))
-                clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(query));
+                clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(query));
 
             ViewBag.ActiveTab = 1;
 
@@ -25,12 +34,12 @@ namespace Vjezba.Web.Controllers
         [HttpPost]
         public ActionResult Index(string queryName, string queryAddress)
         {
-            var clientQuery = MockClientRepository.Instance.All();
+            var clientQuery = this._dbContext.Clients.AsQueryable();
 
             //Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
             //To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
             if (!string.IsNullOrWhiteSpace(queryName))
-                clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(queryName));
+                clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(queryName));
 
             if (!string.IsNullOrWhiteSpace(queryAddress))
                 clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(queryAddress));
@@ -44,12 +53,12 @@ namespace Vjezba.Web.Controllers
         [HttpPost]
         public ActionResult AdvancedSearch(ClientFilterModel filter)
         {
-            var clientQuery = MockClientRepository.Instance.All();
+            var clientQuery = this._dbContext.Clients.AsQueryable();
 
             //Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
             //To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
             if (!string.IsNullOrWhiteSpace(filter.FullName))
-                clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(filter.FullName.ToLower()));
+                clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filter.FullName.ToLower()));
 
             if (!string.IsNullOrWhiteSpace(filter.Address))
                 clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
@@ -58,7 +67,7 @@ namespace Vjezba.Web.Controllers
                 clientQuery = clientQuery.Where(p => p.Email.ToLower().Contains(filter.Email.ToLower()));
 
             if (!string.IsNullOrWhiteSpace(filter.City))
-                clientQuery = clientQuery.Where(p => p.City != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
+                clientQuery = clientQuery.Where(p => p.CityID != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
 
             ViewBag.ActiveTab = 3;
 
@@ -68,8 +77,27 @@ namespace Vjezba.Web.Controllers
 
         public IActionResult Details(int? id = null)
         {
-            var model = id != null ? MockClientRepository.Instance.FindByID(id.Value) : null;
-            return View(model);
+            var client = this._dbContext.Clients
+                .Include(p => p.City)
+                .Where(p => p.ID == id)
+                .FirstOrDefault();
+
+            return View(client);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Client model)
+        {
+            model.CityID = 1;
+            this._dbContext.Clients.Add(model);
+            this._dbContext.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

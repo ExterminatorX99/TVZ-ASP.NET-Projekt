@@ -1,4 +1,4 @@
-﻿@using Vjezba.Web.Mock
+﻿@using Vjezba.Model
 @model List<Client>
 
 @{
@@ -23,6 +23,9 @@
 		</li>
 		<li class="nav-item">
 			<a class="nav-link @(ViewBag.ActiveTab == 3 ? "active" : "")" href="#z-5-7" aria-controls="z-5-7" role="tab" data-toggle="tab">Zadatak 5.7</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link @(ViewBag.ActiveTab == 4 ? "active" : "")" href="#z-6-3" aria-controls="z-6-3" role="tab" data-toggle="tab">Zadatak 6.3</a>
 		</li>
 	</ul>
 
@@ -67,6 +70,17 @@
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form>
 		</div>
+		<div role="tabpanel" class="tab-pane  @(ViewBag.ActiveTab == 4 ? "show active" : "")" id="z-6-3">
+			<h4>Zadatak 6.3 - Partial</h4>
+			@*@await Html.PartialAsync("_ClientFilter", new ClientFilterModel())*@
+			<partial name="_ClientFilter" model="new ClientFilterModel()" />
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<a asp-action="Create" class="btn btn-success float-right">Dodaj novog</a>
 	</div>
 </div>
 
