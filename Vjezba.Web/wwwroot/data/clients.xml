@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
+
 <clients>
 	<client>
 		<id>1</id>
@@ -15,10 +16,10 @@
 		<first_name>Robin</first_name>
 		<last_name>Eck</last_name>
 		<email>reck1@dot.gov</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>3</id>
@@ -75,10 +76,10 @@
 		<first_name>Torrin</first_name>
 		<last_name>Eaglesham</last_name>
 		<email>teaglesham7@uol.com.br</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>9</id>
@@ -105,10 +106,10 @@
 		<first_name>Beale</first_name>
 		<last_name>McCandless</last_name>
 		<email>bmccandlessa@google.co.uk</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>12</id>
@@ -125,20 +126,20 @@
 		<first_name>Tory</first_name>
 		<last_name>Karlolczak</last_name>
 		<email>tkarlolczakc@virginia.edu</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>14</id>
 		<first_name>Honey</first_name>
 		<last_name>Squibbs</last_name>
 		<email>hsquibbsd@about.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>15</id>
@@ -185,10 +186,10 @@
 		<first_name>Daffie</first_name>
 		<last_name>Carnow</last_name>
 		<email>dcarnowi@scientificamerican.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>20</id>
@@ -225,10 +226,10 @@
 		<first_name>Micheal</first_name>
 		<last_name>Livzey</last_name>
 		<email>mlivzeym@gizmodo.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>24</id>
@@ -245,10 +246,10 @@
 		<first_name>Germain</first_name>
 		<last_name>McNair</last_name>
 		<email>gmcnairo@privacy.gov.au</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>26</id>
@@ -295,10 +296,10 @@
 		<first_name>Larisa</first_name>
 		<last_name>Zelake</last_name>
 		<email>lzelaket@hhs.gov</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>31</id>
@@ -315,10 +316,10 @@
 		<first_name>Spencer</first_name>
 		<last_name>Dacres</last_name>
 		<email>sdacresv@fotki.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>33</id>
@@ -375,10 +376,10 @@
 		<first_name>Kimberli</first_name>
 		<last_name>Duffin</last_name>
 		<email>kduffin11@google.pl</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>39</id>
@@ -475,10 +476,10 @@
 		<first_name>Nickolas</first_name>
 		<last_name>Epsly</last_name>
 		<email>nepsly1b@marriott.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>49</id>
@@ -515,10 +516,10 @@
 		<first_name>Katie</first_name>
 		<last_name>Heasman</last_name>
 		<email>kheasman1f@a8.net</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>53</id>
@@ -545,10 +546,10 @@
 		<first_name>Rickert</first_name>
 		<last_name>Healing</last_name>
 		<email>rhealing1i@baidu.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>56</id>
@@ -655,10 +656,10 @@
 		<first_name>Brandea</first_name>
 		<last_name>MacPadene</last_name>
 		<email>bmacpadene1t@redcross.org</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>67</id>
@@ -755,10 +756,10 @@
 		<first_name>Sybila</first_name>
 		<last_name>Caswell</last_name>
 		<email>scaswell23@storify.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>77</id>
@@ -785,10 +786,10 @@
 		<first_name>Ernest</first_name>
 		<last_name>Kantor</last_name>
 		<email>ekantor26@shinystat.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>80</id>
@@ -865,20 +866,20 @@
 		<first_name>Osgood</first_name>
 		<last_name>Leathard</last_name>
 		<email>oleathard2e@dropbox.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>88</id>
 		<first_name>Carina</first_name>
 		<last_name>MacCheyne</last_name>
 		<email>cmaccheyne2f@archive.org</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>89</id>
@@ -895,10 +896,10 @@
 		<first_name>Fidel</first_name>
 		<last_name>Osler</last_name>
 		<email>fosler2h@lycos.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>91</id>
@@ -935,10 +936,10 @@
 		<first_name>Aube</first_name>
 		<last_name>Shemilt</last_name>
 		<email>ashemilt2l@soundcloud.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>95</id>
@@ -955,10 +956,10 @@
 		<first_name>Alleen</first_name>
 		<last_name>Syseland</last_name>
 		<email>asyseland2n@quantcast.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>97</id>
@@ -975,10 +976,10 @@
 		<first_name>Terrie</first_name>
 		<last_name>Siggens</last_name>
 		<email>tsiggens2p@cnbc.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>99</id>
@@ -1035,10 +1036,10 @@
 		<first_name>Coleman</first_name>
 		<last_name>Polglaze</last_name>
 		<email>cpolglaze2v@ebay.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>105</id>
@@ -1165,10 +1166,10 @@
 		<first_name>Novelia</first_name>
 		<last_name>Leaman</last_name>
 		<email>nleaman38@timesonline.co.uk</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>118</id>
@@ -1265,10 +1266,10 @@
 		<first_name>Gabriel</first_name>
 		<last_name>Droghan</last_name>
 		<email>gdroghan3i@angelfire.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>128</id>
@@ -1385,10 +1386,10 @@
 		<first_name>Haskel</first_name>
 		<last_name>Mibourne</last_name>
 		<email>hmibourne3u@berkeley.edu</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>140</id>
@@ -1405,10 +1406,10 @@
 		<first_name>Prentiss</first_name>
 		<last_name>Mateiko</last_name>
 		<email>pmateiko3w@exblog.jp</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>142</id>
@@ -1425,10 +1426,10 @@
 		<first_name>Adelaida</first_name>
 		<last_name>Albone</last_name>
 		<email>aalbone3y@theguardian.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>144</id>
@@ -1505,10 +1506,10 @@
 		<first_name>Olivier</first_name>
 		<last_name>De Roeck</last_name>
 		<email>oderoeck46@domainmarket.com</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>152</id>
@@ -1525,10 +1526,10 @@
 		<first_name>Ronald</first_name>
 		<last_name>Scotchforth</last_name>
 		<email>rscotchforth48@dion.ne.jp</email>
-		<gender/>
-		<phone_number/>
-		<address/>
-		<city_id/>
+		<gender />
+		<phone_number />
+		<address />
+		<city_id />
 	</client>
 	<client>
 		<id>154</id>

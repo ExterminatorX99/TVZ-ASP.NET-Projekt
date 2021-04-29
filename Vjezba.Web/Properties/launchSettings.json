@@ -1,13 +1,13 @@
 ﻿{
-  "profiles": {
-    "Vjezba.Web": {
-      "commandName": "Project",
-      "dotnetRunMessages": "true",
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:12121",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
-  }
+	"profiles": {
+		"Vjezba.Web": {
+			"commandName": "Project",
+			"dotnetRunMessages": "true",
+			"launchBrowser": true,
+			"applicationUrl": "https://localhost:12121",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			}
+		}
+	}
 }

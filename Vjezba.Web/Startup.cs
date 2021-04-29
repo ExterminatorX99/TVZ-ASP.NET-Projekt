@@ -21,9 +21,7 @@ namespace Vjezba.Web
 		public void ConfigureServices(IServiceCollection services) {
 			services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-			services.AddDbContext<ClientManagerDbContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("ClientManagerDbContext"),
-					opt => opt.MigrationsAssembly("Vjezba.DAL")));
+			services.AddDbContext<ClientManagerDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ClientManagerDbContext"), opt => opt.MigrationsAssembly("Vjezba.DAL")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

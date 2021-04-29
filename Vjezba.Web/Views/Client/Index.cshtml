@@ -1,13 +1,12 @@
-﻿@model List<Vjezba.Model.Client>
+﻿@using Vjezba.Model
+@model List<Vjezba.Model.Client>
 
 @{
 	ViewData["Title"] = "Home Page";
 }
 
 <style>
-	.tab-pane {
-		padding: 20px;
-	}
+	.tab-pane { padding: 20px; }
 </style>
 
 <div style="margin-top: 20px;">
@@ -79,24 +78,23 @@
 
 <table style="margin-top: 20px;" class="table table-condensed">
 	<thead>
-		<tr>
-			<th>Client</th>
-			<th>Address</th>
-			<th>Email</th>
-			<th>City</th>
-		</tr>
+	<tr>
+		<th>Client</th>
+		<th>Address</th>
+		<th>Email</th>
+		<th>City</th>
+	</tr>
 	</thead>
 	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
-				</td>
-				<td>@item.Address</td>
-				<td>@item.Email</td>
-				<td>@item.City?.Name</td>
-			</tr>
-		}
+	@foreach (Client item in Model) {
+		<tr>
+			<td>
+				<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
+			</td>
+			<td>@item.Address</td>
+			<td>@item.Email</td>
+			<td>@item.City?.Name</td>
+		</tr>
+	}
 	</tbody>
 </table>
