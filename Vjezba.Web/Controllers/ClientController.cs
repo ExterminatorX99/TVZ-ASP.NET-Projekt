@@ -52,7 +52,7 @@ namespace Vjezba.Web.Controllers
 			//Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
 			//To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
 			if (!string.IsNullOrWhiteSpace(filter.FullName))
-				clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(filter.FullName.ToLower()));
+				clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filter.FullName.ToLower()));
 
 			if (!string.IsNullOrWhiteSpace(filter.Address))
 				clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
