@@ -17,9 +17,9 @@ namespace Vjezba.Web.Controllers
 		}
 
 		public IActionResult Index(ClientFilterModel filter) {
-			IQueryable<Client> clientQuery = _dbContext.Clients.AsQueryable();
+			IQueryable<Client> clientQuery = _dbContext.Clients.Include(c => c.City).AsQueryable();
 
-			filter = filter ?? new ClientFilterModel();
+			filter ??= new ClientFilterModel();
 
 			if (!string.IsNullOrWhiteSpace(filter.FullName))
 				clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filter.FullName.ToLower()));
@@ -33,12 +33,12 @@ namespace Vjezba.Web.Controllers
 			if (!string.IsNullOrWhiteSpace(filter.City))
 				clientQuery = clientQuery.Where(p => p.CityID != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
 
-			List<Client> model = clientQuery.ToList();
-			return View("Index", model);
+			List<Client> model = clientQuery.OrderBy(c => c.ID).ToList();
+			return View(nameof(Index), model);
 		}
 
 		public IActionResult Details(int? id = null) {
-			Client? client = _dbContext.Clients.Include(p => p.City).FirstOrDefault(p => p.ID == id);
+			Client client = _dbContext.Clients.Include(p => p.City).FirstOrDefault(p => p.ID == id);
 
 			return View(client);
 		}
@@ -49,6 +49,21 @@ namespace Vjezba.Web.Controllers
 		public IActionResult Create(Client model) {
 			model.CityID = 1;
 			_dbContext.Clients.Add(model);
+			_dbContext.SaveChanges();
+
+			return RedirectToAction(nameof(Index));
+		}
+
+		public IActionResult Edit(int id) {
+			Client client = _dbContext.Clients.FirstOrDefault(c => c.ID == id);
+			return View(client);
+		}
+
+		[HttpPost]
+		public IActionResult Edit(Client client) {
+			Client clientToEdit = _dbContext.Clients.FirstOrDefault(c => c.ID == client.ID);
+
+			TryUpdateModelAsync(clientToEdit);
 			_dbContext.SaveChanges();
 
 			return RedirectToAction(nameof(Index));

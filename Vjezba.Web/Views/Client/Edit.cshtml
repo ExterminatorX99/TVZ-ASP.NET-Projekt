@@ -1,0 +1,35 @@
+﻿@model Vjezba.Model.Client
+
+@{
+	ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a asp-action="Index">Popis klijenata</a>
+		</li>
+		<li class="breadcrumb-item active" aria-current="page">Uredi klijenta</li>
+	</ol>
+</nav>
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<input type="hidden" asp-for="ID" class="form-control" value="@Model.ID"/>
+			</div>
+			<partial name="_CreateOrEdit" model="@Model"/>
+			<div class="form-group">
+				<label asp-for="CityID" class="col-form-label"></label>
+				<input asp-for="CityID" class="form-control" value="@Model.CityID"/>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Save" class="btn btn-primary"/>
+			</div>
+		</form>
+	</div>
+</div>

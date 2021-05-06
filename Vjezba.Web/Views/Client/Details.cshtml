@@ -7,17 +7,19 @@
 <h2>Details</h2>
 
 @if (Model != null) {
-	<ol class="breadcrumb">
-		<li>
-			<a asp-action="Index">Popis klijenata</a>
-		</li>
-		<li class="active">@Model.FullName</li>
-	</ol>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a asp-action="Index">Popis klijenata</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">@Model.FullName</li>
+		</ol>
+	</nav>
 
 	<div>
 		<h4>Client</h4>
 		<hr/>
-		<dl class="dl-horizontal">
+		<dl>
 			<dt>
 				ID
 			</dt>
@@ -61,6 +63,7 @@
 				@Model?.City?.Name
 			</dd>
 		</dl>
+		<a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.ID">Uredi</a>
 	</div>
 }
 else {
