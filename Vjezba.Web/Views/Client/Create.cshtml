@@ -34,6 +34,24 @@
 			$("input[type=email]").blur(function() {
 				$("span[id$=tooltip]").hide();
 			});
+
+			$(".form-control").on("input", SetUnload);
 		});
+
+		function SetUnload() {
+			window.onbeforeunload = function(e) {
+				e = e || window.event;
+
+				var msg = 'Any string';
+
+				// For IE<8 and Firefox prior to version 4
+				if (e) {
+					e.returnValue = msg;
+				}
+
+				// For Chrome, Safari, IE8+ and Opera 12+
+				return msg;
+			};
+		}
 	</script>
 }
