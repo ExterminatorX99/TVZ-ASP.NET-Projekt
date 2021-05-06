@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vjezba.DAL;
@@ -47,11 +48,13 @@ namespace Vjezba.Web.Controllers
 
 		[HttpPost]
 		public IActionResult Create(Client model) {
-			model.CityID = 1;
-			_dbContext.Clients.Add(model);
-			_dbContext.SaveChanges();
-
+			if (ModelState.IsValid) {
+				model.CityID = 1;
+				_dbContext.Clients.Add(model);
+				_dbContext.SaveChanges();
 			return RedirectToAction(nameof(Index));
+			}
+			return View(model);
 		}
 
 		public IActionResult Edit(int id) {
@@ -60,13 +63,15 @@ namespace Vjezba.Web.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Edit(Client client) {
-			Client clientToEdit = _dbContext.Clients.FirstOrDefault(c => c.ID == client.ID);
+		public async Task<IActionResult> Edit(Client model) {
+			Client client = _dbContext.Clients.FirstOrDefault(c => c.ID == model.ID);
+			bool ok = await TryUpdateModelAsync(client);
 
-			TryUpdateModelAsync(clientToEdit);
-			_dbContext.SaveChanges();
-
-			return RedirectToAction(nameof(Index));
+			if (ModelState.IsValid) {
+				await _dbContext.SaveChangesAsync();
+				return RedirectToAction(nameof(Index));
+			}
+			return View(model);
 		}
 	}
 }
