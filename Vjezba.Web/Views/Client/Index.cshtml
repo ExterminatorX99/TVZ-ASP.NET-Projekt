@@ -25,18 +25,38 @@
 	</tr>
 	</thead>
 	<tbody>
-	@foreach (Client item in Model) {
-		<tr>
+	@foreach (Client client in Model) {
+		<tr onmouseover="Show(this)" onmouseout="Fade(this)" onclick="ToggleBold(this)">
 			<td>
-				<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
+				<a asp-action="Details" asp-route-id="@client.ID">@client.FullName</a>
 			</td>
-			<td>@item.Address</td>
-			<td>@item.Email</td>
-			<td>@item.City?.Name</td>
+			<td>@client.Address</td>
+			<td>@client.Email</td>
+			<td>@client.City?.Name</td>
 			<td class="text-center">
-				<a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.ID">Uredi</a>
+				<a class="btn btn-primary" asp-action="Edit" asp-route-id="@client.ID">Uredi</a>
 			</td>
 		</tr>
 	}
 	</tbody>
 </table>
+
+@section Scripts {
+	<script type="text/javascript">
+		$(function() {
+			$("tbody").find("tr").css("opacity", 0.5);
+		});
+
+		function Show(tr) {
+			$(tr).css("opacity", 1);
+		}
+
+		function Fade(tr) {
+			$(tr).css("opacity", 0.5);
+		}
+
+		function ToggleBold(tr) {
+			$(tr).find("td").toggleClass("font-weight-bold");
+		}
+	</script>
+}
