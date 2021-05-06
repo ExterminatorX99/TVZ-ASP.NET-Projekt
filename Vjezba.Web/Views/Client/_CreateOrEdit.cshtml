@@ -13,6 +13,7 @@
 <div class="form-group">
 	<label asp-for="Email" class="col-form-label"></label>
 	<input asp-for="Email" class="form-control" value="@Model?.Email"/>
+	<span id="tooltip" style="display: none;">Example email: user@example.com</span>
 	<span asp-validation-for="Email" class="text-danger"></span>
 </div>
 <div class="form-group">

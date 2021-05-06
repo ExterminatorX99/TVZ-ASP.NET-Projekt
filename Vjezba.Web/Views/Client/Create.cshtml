@@ -23,3 +23,17 @@
 		</form>
 	</div>
 </div>
+
+@section Scripts {
+	<script type="text/javascript">
+		$(function() {
+			$("input[type=email]").focus(function() {
+				$("span[id$=tooltip]").show();
+			});
+
+			$("input[type=email]").blur(function() {
+				$("span[id$=tooltip]").hide();
+			});
+		});
+	</script>
+}
