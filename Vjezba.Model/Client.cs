@@ -45,5 +45,10 @@ namespace Vjezba.Model
 		public string FullName => $"{FirstName} {LastName}";
 
 		public virtual ICollection<Meeting> Meetings { get; set; }
+
+		[DisplayName("Radno iskustvo")]
+		[Required]
+		[Range(0, 100, ErrorMessage = "Radno iskustvo mora biti između 0 i 100.")]
+		public int? WorkingExperience { get; set; }
 	}
 }
