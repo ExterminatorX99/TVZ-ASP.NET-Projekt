@@ -1,69 +1,57 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Vjezba.DAL;
 using Vjezba.Model;
 using Vjezba.Web.Models;
 
 namespace Vjezba.Web.Controllers
 {
-    public class ClientController : Controller
-    {
-        private ClientManagerDbContext _dbContext;
+	public class ClientController : Controller
+	{
+		private ClientManagerDbContext _dbContext;
 
-        public ClientController(ClientManagerDbContext dbContext)
-        {
-            this._dbContext = dbContext;
-        }
+		public ClientController(ClientManagerDbContext dbContext) {
+			_dbContext = dbContext;
+		}
 
-        public IActionResult Index(ClientFilterModel filter)
-        {
-            var clientQuery = this._dbContext.Clients.AsQueryable();
+		public IActionResult Index(ClientFilterModel filter) {
+			IQueryable<Client> clientQuery = _dbContext.Clients.AsQueryable();
 
-            filter = filter ?? new ClientFilterModel();
+			filter = filter ?? new ClientFilterModel();
 
-            if (!string.IsNullOrWhiteSpace(filter.FullName))
-                clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filter.FullName.ToLower()));
+			if (!string.IsNullOrWhiteSpace(filter.FullName))
+				clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filter.FullName.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filter.Address))
-                clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
+			if (!string.IsNullOrWhiteSpace(filter.Address))
+				clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filter.Email))
-                clientQuery = clientQuery.Where(p => p.Email.ToLower().Contains(filter.Email.ToLower()));
+			if (!string.IsNullOrWhiteSpace(filter.Email))
+				clientQuery = clientQuery.Where(p => p.Email.ToLower().Contains(filter.Email.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filter.City))
-                clientQuery = clientQuery.Where(p => p.CityID != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
+			if (!string.IsNullOrWhiteSpace(filter.City))
+				clientQuery = clientQuery.Where(p => p.CityID != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
 
-            var model = clientQuery.ToList();
-            return View("Index", model);
-        }
+			List<Client> model = clientQuery.ToList();
+			return View("Index", model);
+		}
 
-        public IActionResult Details(int? id = null)
-        {
-            var client = this._dbContext.Clients
-                .Include(p => p.City)
-                .Where(p => p.ID == id)
-                .FirstOrDefault();
+		public IActionResult Details(int? id = null) {
+			Client? client = _dbContext.Clients.Include(p => p.City).FirstOrDefault(p => p.ID == id);
 
-            return View(client);
-        }
+			return View(client);
+		}
 
-        public IActionResult Create()
-        {
-            return View();
-        }
+		public IActionResult Create() => View();
 
-        [HttpPost]
-        public IActionResult Create(Client model)
-        {
-            model.CityID = 1;
-            this._dbContext.Clients.Add(model);
-            this._dbContext.SaveChanges();
+		[HttpPost]
+		public IActionResult Create(Client model) {
+			model.CityID = 1;
+			_dbContext.Clients.Add(model);
+			_dbContext.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
-        }
-    }
+			return RedirectToAction(nameof(Index));
+		}
+	}
 }
