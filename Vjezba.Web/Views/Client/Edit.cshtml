@@ -20,7 +20,7 @@
 		<form asp-action="Edit">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group">
-				<input type="hidden" asp-for="ID" class="form-control" value="@Model.ID" />
+				<input type="hidden" asp-for="ID" class="form-control" value="@Model.ID"/>
 				<span asp-validation-for="ID" class="text-danger"></span>
 			</div>
 			<partial name="_CreateOrEdit" model="@Model"/>
@@ -30,3 +30,21 @@
 		</form>
 	</div>
 </div>
+
+@section Scripts {
+	<link rel="stylesheet" href="~/lib/jquery.mapbox.geocoder/dist/bootstrap-theme.min.css" type="text/css"/>
+	<script src="~/lib/jquery.mapbox.geocoder/dist/jquery.mapbox.geocoder.min.js"></script>
+
+	<script type="text/javascript">
+		(function($) {
+			$('#Address').mapboxAutocomplete({
+				accessToken: "pk.eyJ1IjoiZXh0ZXJtaW5hdG9yeCIsImEiOiJja29kM3g0MTEwMzloMndvMTFwazQ2cThjIn0.JEZBehpHjSEkDKG-YAEKQg",
+				endpoint: 'https://api.mapbox.com/geocoding/v5/',
+				mode: 'mapbox.places',
+				language: 'hr',
+				width: '100%',
+				zindex: '1000'
+			});
+		})(jQuery);
+	</script>
+}
