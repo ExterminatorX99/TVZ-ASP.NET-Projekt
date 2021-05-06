@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Vjezba.DAL;
 using Vjezba.Model;
@@ -44,7 +45,10 @@ namespace Vjezba.Web.Controllers
 			return View(client);
 		}
 
-		public IActionResult Create() => View();
+		public IActionResult Create() {
+			FillDropDownValues();
+			return View();
+		}
 
 		[HttpPost]
 		public IActionResult Create(Client model) {
@@ -52,13 +56,16 @@ namespace Vjezba.Web.Controllers
 				model.CityID = 1;
 				_dbContext.Clients.Add(model);
 				_dbContext.SaveChanges();
-			return RedirectToAction(nameof(Index));
+				return RedirectToAction(nameof(Index));
 			}
+			FillDropDownValues();
 			return View(model);
 		}
 
 		public IActionResult Edit(int id) {
 			Client client = _dbContext.Clients.FirstOrDefault(c => c.ID == id);
+
+			FillDropDownValues();
 			return View(client);
 		}
 
@@ -71,7 +78,24 @@ namespace Vjezba.Web.Controllers
 				await _dbContext.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));
 			}
+
+			FillDropDownValues();
 			return View(model);
+		}
+
+		private void FillDropDownValues() {
+			var selectItems = new List<SelectListItem>();
+
+			//Polje je opcionalno
+			var listItem = new SelectListItem("- odaberite -", "");
+			selectItems.Add(listItem);
+
+			foreach (City city in _dbContext.Cities) {
+				listItem = new SelectListItem(city.Name, city.ID.ToString());
+				selectItems.Add(listItem);
+			}
+
+			ViewBag.AvailableCities = selectItems;
 		}
 	}
 }

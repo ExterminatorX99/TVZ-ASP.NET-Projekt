@@ -25,11 +25,6 @@
 			</div>
 			<partial name="_CreateOrEdit" model="@Model"/>
 			<div class="form-group">
-				<label asp-for="CityID" class="col-form-label"></label>
-				<input asp-for="CityID" class="form-control" value="@Model.CityID" />
-				<span asp-validation-for="CityID" class="text-danger"></span>
-			</div>
-			<div class="form-group">
 				<input type="submit" value="Save" class="btn btn-primary"/>
 			</div>
 		</form>

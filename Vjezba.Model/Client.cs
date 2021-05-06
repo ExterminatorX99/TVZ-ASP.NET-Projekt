@@ -35,11 +35,11 @@ namespace Vjezba.Model
 		[Required(ErrorMessage = "Mora biti validan broj telefona.")]
 		[Phone]
 		public string PhoneNumber { get; set; }
-
+		
 		[ForeignKey(nameof(City))]
-		[Required]
 		public int? CityID { get; set; }
 
+		[DisplayName("Grad")]
 		public City City { get; set; }
 
 		public string FullName => $"{FirstName} {LastName}";

@@ -31,6 +31,11 @@
 	<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 </div>
 <div class="form-group">
+	<label asp-for="CityID" class="col-form-label"></label>
+	<select asp-for="CityID" asp-items="ViewBag.AvailableCities" class="form-control"></select>
+	<span asp-validation-for="CityID" class="text-danger"></span>
+</div>
+<div class="form-group">
 	<label asp-for="WorkingExperience" class="col-form-label"></label>
 	<input asp-for="WorkingExperience" class="form-control" value="@Model?.WorkingExperience"/>
 	<span asp-validation-for="WorkingExperience" class="text-danger"></span>
