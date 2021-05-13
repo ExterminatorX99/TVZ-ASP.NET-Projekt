@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,13 +36,14 @@ namespace Vjezba.Model
 		[Required(ErrorMessage = "Mora biti validan broj telefona.")]
 		[Phone]
 		public string PhoneNumber { get; set; }
-		
+
 		[ForeignKey(nameof(City))]
 		public int? CityID { get; set; }
 
 		[DisplayName("Grad")]
 		public City City { get; set; }
 
+		[DisplayName("Ime i prezime")]
 		public string FullName => $"{FirstName} {LastName}";
 
 		public virtual ICollection<Meeting> Meetings { get; set; }
@@ -50,5 +52,11 @@ namespace Vjezba.Model
 		[Required]
 		[Range(0, 100, ErrorMessage = "Radno iskustvo mora biti između 0 i 100.")]
 		public int? WorkingExperience { get; set; }
+
+		[DisplayName("Datum rođenja")]
+		[Required]
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		public DateTime? DateOfBirth { get; set; }
 	}
 }

@@ -1,5 +1,7 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +42,14 @@ namespace Vjezba.Web
 			app.UseRouting();
 
 			app.UseAuthorization();
+
+			var supportedCultures = new[] { new CultureInfo("hr"), new CultureInfo("en"), new CultureInfo("en-US"), new CultureInfo("en-GB") };
+
+			app.UseRequestLocalization(new RequestLocalizationOptions {
+				DefaultRequestCulture = new RequestCulture("hr"),
+				SupportedCultures = supportedCultures,
+				SupportedUICultures = supportedCultures
+			});
 
 			app.UseEndpoints(endpoints => {
 				endpoints.MapControllerRoute("kontakt-forma", "kontakt-forma", new { controller = "Home", action = "Contact" });

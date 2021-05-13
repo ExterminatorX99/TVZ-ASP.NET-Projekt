@@ -1,4 +1,5 @@
-﻿@model Vjezba.Model.Client
+﻿@using System.Globalization
+@model Vjezba.Model.Client
 
 @{
 	ViewData["Title"] = "Edit";
@@ -46,5 +47,10 @@
 				zindex: '1000'
 			});
 		})(jQuery);
+
+		$('#DateOfBirth').datepicker({
+			format: "@CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower()",
+			uiLibrary: "bootstrap4"
+		});
 	</script>
 }

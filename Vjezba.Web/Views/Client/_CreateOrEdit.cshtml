@@ -1,4 +1,5 @@
-﻿@model Vjezba.Model.Client
+﻿@using System.Globalization
+@model Vjezba.Model.Client
 
 <div class="form-group">
 	<label asp-for="FirstName" class="col-form-label"></label>
@@ -40,4 +41,10 @@
 	<label asp-for="WorkingExperience" class="col-form-label"></label>
 	<input asp-for="WorkingExperience" class="form-control" value="@Model?.WorkingExperience"/>
 	<span asp-validation-for="WorkingExperience" class="text-danger"></span>
+</div>
+<div class="form-group">
+	<label asp-for="DateOfBirth" class="col-form-label"></label>
+	<input asp-for="DateOfBirth" class="form-control" type="text" value="@Model?.DateOfBirth?.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern)"/>
+	@*<input type="text" class="form-control" name="DateOfBirth" id="DateOfBirth" value="@Model?.DateOfBirth?.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern)"/>*@
+	<span asp-validation-for="DateOfBirth" class="text-danger"></span>
 </div>
