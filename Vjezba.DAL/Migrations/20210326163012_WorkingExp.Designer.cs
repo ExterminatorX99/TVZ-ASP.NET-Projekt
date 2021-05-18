@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vjezba.DAL;
 
 namespace Vjezba.DAL.Migrations
 {
     [DbContext(typeof(ClientManagerDbContext))]
-    partial class ClientManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210326163012_WorkingExp")]
+    partial class WorkingExp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +65,6 @@ namespace Vjezba.DAL.Migrations
 
                     b.Property<int?>("CityID")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
