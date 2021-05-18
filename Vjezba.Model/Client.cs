@@ -11,9 +11,22 @@ namespace Vjezba.Model
     {
         [Key]
         public int ID { get; set; }
+
+        [Required]
+        [MinLength(3, ErrorMessage = "Unesite barem 3 znaka")]
         public string FirstName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
+
+        [Required]
         public string Email { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
+
+        [Range(1, 100)]
+        public int? WorkingExperience { get; set; }
+
         public char Gender { get; set; }
         public string Address { get; set; }
         public string PhoneNumber { get; set; }

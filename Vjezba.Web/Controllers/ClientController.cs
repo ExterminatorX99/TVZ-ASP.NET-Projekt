@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Vjezba.Web.Controllers
 
         public IActionResult Index(ClientFilterModel filter)
         {
-            var clientQuery = this._dbContext.Clients.AsQueryable();
+            var clientQuery = this._dbContext.Clients.Include(p => p.City).AsQueryable();
 
             filter = filter ?? new ClientFilterModel();
 
@@ -53,17 +54,69 @@ namespace Vjezba.Web.Controllers
 
         public IActionResult Create()
         {
+            this.FillDropdownValues();
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(Client model)
         {
-            model.CityID = 1;
-            this._dbContext.Clients.Add(model);
-            this._dbContext.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                this._dbContext.Clients.Add(model);
+                this._dbContext.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                this.FillDropdownValues();
+                return View();
+            }
+        }
+
+        [ActionName(nameof(Edit))]
+        public IActionResult Edit(int id)
+        {
+            var model = this._dbContext.Clients.FirstOrDefault(c => c.ID == id);
+            this.FillDropdownValues();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName(nameof(Edit))]
+        public async Task<IActionResult> EditPost(int id)
+        {
+            var client = this._dbContext.Clients.FirstOrDefault(c => c.ID == id);
+            var ok = await this.TryUpdateModelAsync(client);
+
+            if (ok && this.ModelState.IsValid)
+            {
+                this._dbContext.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+
+            this.FillDropdownValues();
+            return View();
+        }
+
+        private void FillDropdownValues()
+        {
+            var selectItems = new List<SelectListItem>();
+
+            //Polje je opcionalno
+            var listItem = new SelectListItem();
+            listItem.Text = "- odaberite -";
+            listItem.Value = "";
+            selectItems.Add(listItem);
+
+            foreach (var category in this._dbContext.Cities)
+            {
+                listItem = new SelectListItem(category.Name, category.ID.ToString());
+                selectItems.Add(listItem);
+            }
+
+            ViewBag.PossibleCities = selectItems;
         }
     }
 }
