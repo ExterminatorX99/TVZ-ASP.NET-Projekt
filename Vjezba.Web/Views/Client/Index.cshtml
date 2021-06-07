@@ -1,45 +1,33 @@
-﻿@using Vjezba.Model
-@model List<Client>
+﻿@model List<Vjezba.Model.Client>
 
 @{
 	ViewData["Title"] = "Home Page";
 }
 
 <style>
-	.tab-pane {
-		padding: 20px;
-	}
+	.tab-pane { padding: 20px; }
 </style>
 
 <h1>Popis klijenata</h1>
-<div style="margin-top: 20px; margin-bottom: 10px;">
-	<partial name="_ClientFilter" model="new ClientFilterModel()" />
+<div style="margin-bottom: 10px; margin-top: 20px;">
+	<partial name="_ClientFilter" model="new ClientFilterModel()"/>
 </div>
 
-<table style="margin-top: 20px;" class="table table-condensed">
-	<thead>
-		<tr>
-			<th>Client</th>
-			<th>Address</th>
-			<th>Email</th>
-			<th>City</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-		<tr>
-			<td>
-				<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
-			</td>
-			<td>@item.Address</td>
-			<td>@item.Email</td>
-			<td>@item.City?.Name</td>
-			<td>
-				<a asp-action="Edit" asp-route-id="@item.ID">[edit]</a>
-			</td>
-		</tr>
+<partial name="_IndexTable" model="Model"/>
+
+@section Scripts {
+	<script>
+		function filter() {
+			const form = $("form");
+			$.ajax({
+				url: "@Url.Action("IndexAjax")",
+				method: "POST",
+				data: form.serialize(),
+				success: function(data) {
+					$("table").replaceWith(data);
+					return data;
+				}
+			});
 		}
-	</tbody>
-</table>
+	</script>
+}

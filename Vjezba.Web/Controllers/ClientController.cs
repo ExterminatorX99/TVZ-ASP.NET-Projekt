@@ -1,122 +1,113 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Vjezba.DAL;
 using Vjezba.Model;
 using Vjezba.Web.Models;
 
 namespace Vjezba.Web.Controllers
 {
-    public class ClientController : Controller
-    {
-        private ClientManagerDbContext _dbContext;
+	public class ClientController : Controller
+	{
+		private ClientManagerDbContext _dbContext;
 
-        public ClientController(ClientManagerDbContext dbContext)
-        {
-            this._dbContext = dbContext;
-        }
+		public ClientController(ClientManagerDbContext dbContext) {
+			_dbContext = dbContext;
+		}
 
-        public IActionResult Index(ClientFilterModel filter)
-        {
-            var clientQuery = this._dbContext.Clients.Include(p => p.City).AsQueryable();
+		public IActionResult Index() {
+			IQueryable<Client> clientQuery = _dbContext.Clients.Include(p => p.City);
 
-            filter = filter ?? new ClientFilterModel();
+			List<Client> model = clientQuery.ToList();
+			return View("Index", model);
+		}
 
-            if (!string.IsNullOrWhiteSpace(filter.FullName))
-                clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filter.FullName.ToLower()));
+		public IActionResult IndexAjax(ClientFilterModel filter) {
+			IQueryable<Client> clientQuery = _dbContext.Clients.Include(p => p.City);
 
-            if (!string.IsNullOrWhiteSpace(filter.Address))
-                clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
+			filter ??= new ClientFilterModel();
 
-            if (!string.IsNullOrWhiteSpace(filter.Email))
-                clientQuery = clientQuery.Where(p => p.Email.ToLower().Contains(filter.Email.ToLower()));
+			if (!string.IsNullOrWhiteSpace(filter.FullName))
+				clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filter.FullName.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filter.City))
-                clientQuery = clientQuery.Where(p => p.CityID != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
+			if (!string.IsNullOrWhiteSpace(filter.Address))
+				clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
 
-            var model = clientQuery.ToList();
-            return View("Index", model);
-        }
+			if (!string.IsNullOrWhiteSpace(filter.Email))
+				clientQuery = clientQuery.Where(p => p.Email.ToLower().Contains(filter.Email.ToLower()));
 
-        public IActionResult Details(int? id = null)
-        {
-            var client = this._dbContext.Clients
-                .Include(p => p.City)
-                .Where(p => p.ID == id)
-                .FirstOrDefault();
+			if (!string.IsNullOrWhiteSpace(filter.City))
+				clientQuery = clientQuery.Where(p => p.CityID != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
 
-            return View(client);
-        }
+			List<Client> model = clientQuery.ToList();
 
-        public IActionResult Create()
-        {
-            this.FillDropdownValues();
-            return View();
-        }
+			return PartialView("_IndexTable", model);
+		}
 
-        [HttpPost]
-        public IActionResult Create(Client model)
-        {
-            if (ModelState.IsValid)
-            {
-                this._dbContext.Clients.Add(model);
-                this._dbContext.SaveChanges();
+		public IActionResult Details(int? id = null) {
+			Client? client = _dbContext.Clients.Include(p => p.City).FirstOrDefault(p => p.ID == id);
 
-                return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                this.FillDropdownValues();
-                return View();
-            }
-        }
+			return View(client);
+		}
 
-        [ActionName(nameof(Edit))]
-        public IActionResult Edit(int id)
-        {
-            var model = this._dbContext.Clients.FirstOrDefault(c => c.ID == id);
-            this.FillDropdownValues();
-            return View(model);
-        }
+		public IActionResult Create() {
+			FillDropdownValues();
+			return View();
+		}
 
-        [HttpPost]
-        [ActionName(nameof(Edit))]
-        public async Task<IActionResult> EditPost(int id)
-        {
-            var client = this._dbContext.Clients.FirstOrDefault(c => c.ID == id);
-            var ok = await this.TryUpdateModelAsync(client);
+		[HttpPost]
+		public IActionResult Create(Client model) {
+			if (ModelState.IsValid) {
+				_dbContext.Clients.Add(model);
+				_dbContext.SaveChanges();
 
-            if (ok && this.ModelState.IsValid)
-            {
-                this._dbContext.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
+				return RedirectToAction(nameof(Index));
+			}
+			FillDropdownValues();
+			return View();
+		}
 
-            this.FillDropdownValues();
-            return View();
-        }
+		[ActionName(nameof(Edit))]
+		public IActionResult Edit(int id) {
+			Client? model = _dbContext.Clients.FirstOrDefault(c => c.ID == id);
+			FillDropdownValues();
+			return View(model);
+		}
 
-        private void FillDropdownValues()
-        {
-            var selectItems = new List<SelectListItem>();
+		[HttpPost]
+		[ActionName(nameof(Edit))]
+		public async Task<IActionResult> EditPost(int id) {
+			Client? client = _dbContext.Clients.FirstOrDefault(c => c.ID == id);
+			bool ok = await TryUpdateModelAsync(client);
 
-            //Polje je opcionalno
-            var listItem = new SelectListItem();
-            listItem.Text = "- odaberite -";
-            listItem.Value = "";
-            selectItems.Add(listItem);
+			if (ok && ModelState.IsValid) {
+				await _dbContext.SaveChangesAsync();
+				return RedirectToAction(nameof(Index));
+			}
 
-            foreach (var category in this._dbContext.Cities)
-            {
-                listItem = new SelectListItem(category.Name, category.ID.ToString());
-                selectItems.Add(listItem);
-            }
+			FillDropdownValues();
+			return View();
+		}
 
-            ViewBag.PossibleCities = selectItems;
-        }
-    }
+		private void FillDropdownValues() {
+			var selectItems = new List<SelectListItem>();
+
+			//Polje je opcionalno
+			var listItem = new SelectListItem {
+				Text = "- odaberite -",
+				Value = ""
+			};
+			selectItems.Add(listItem);
+
+			foreach (City category in _dbContext.Cities) {
+				listItem = new SelectListItem(category.Name, category.ID.ToString());
+				selectItems.Add(listItem);
+			}
+
+			ViewBag.PossibleCities = selectItems;
+		}
+	}
 }
