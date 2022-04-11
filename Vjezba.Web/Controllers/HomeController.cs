@@ -67,20 +67,11 @@ namespace Vjezba.Web.Controllers
 		/// <param name="formData"></param>
 		/// <returns></returns>
 		[HttpPost]
-		public IActionResult SubmitQuery(IFormCollection formData) {
-			string ime = formData["ime"];
-			string prezime = formData["prezime"];
-			string email = formData["email"]; ;
-			string poruka = formData["poruka"]; ;
-			string tip = formData["tip"]; ;
-			string toggle = formData["newsletter"];
-			string newsletter = toggle == "on" ? "obavijestit ćemo vas" : "nećemo vas obavijestiti";
-
-
+		public IActionResult SubmitQuery(ContactForm formData) {
 			//Ovdje je potrebno obraditi podatke i pospremiti finalni string u ViewBag
-			string message = $"Poštovani {ime} {prezime} ({email}) zaprimili smo vašu poruku te će vam se netko ubrzo javiti.<br>";
-			message += $"Sadržaj vaše poruke je: [{tip}]<br>{poruka}.<br>";
-			message += $"Također, {newsletter} o daljnjim promjenama preko newslettera.<br>";
+			string message = $"Poštovani {formData.Ime} {formData.Prezime} ({formData.Email}) zaprimili smo vašu poruku te će vam se netko ubrzo javiti.<br>";
+			message += $"Sadržaj vaše poruke je: [{formData.Tip}]<br>{formData.Poruka}.<br>";
+			message += $"Također, {formData.Newsletter} o daljnjim promjenama preko newslettera.<br>";
 
 
 			ViewBag.Message = message;
